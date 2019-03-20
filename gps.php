@@ -22,33 +22,7 @@ function updated($version, $file)
 	if ($cek2[0] == $version) {
 		echo "\n[-] Tidak Ada Pembaruan \n\n";
 	}else{
-		echo "\n[+] Mendownload Pembaruan Version : ";
-		
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, 'https://raw.githubusercontent.com/indosecid/gps_tracking/master/gps.php');
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_HEADER, false);
-		$data = curl_exec($curl);
-		curl_close($curl);
-		function get_download($file, $version, $data)
-		{
-			touch($file);
-			$fp = fopen($file, 'w');
-			fwrite($fp, $data);
-			fclose($fp);
-			echo "\n[+] Berhasil Mendownload Pembaruan Version : ".$version."\n[+] Filename : ".$file."\n\n";
-			exit();
-		}
-		if (file_exists($file)) {
-			if (unlink($file)) {
-				get_download($file, $cek, $data);
-			}
-		}else{
-			get_download($file, $cek, $data);
-		}
-		
-	}
-}
+
 // cek koneksi
 echo "\n[+] Mengecek Koneksi Internet ...";
 $cek = get_headers('https://facebook.com');
